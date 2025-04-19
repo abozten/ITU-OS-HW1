@@ -1,0 +1,3 @@
+/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build/CMakeFiles/itush.dir
+/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build/CMakeFiles/edit_cache.dir
+/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build/CMakeFiles/rebuild_cache.dir

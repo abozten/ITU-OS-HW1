@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/linkedlist.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/linkedlist.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/linkedlist.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/free.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/free.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/free.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/check.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/check.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/check.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/display.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/display.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/display.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/lexer/lex.yy.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/lex.yy.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/lex.yy.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/lexer/bison.tab.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/bison.tab.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/bison.tab.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/parser/parser.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/parser/parser.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/parser/parser.c"
+},
+{
+  "directory": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build",
+  "command": "/usr/bin/clang -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99 -o CMakeFiles/itush.dir/source/executor/executor.c.o -c /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/executor/executor.c",
+  "file": "/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/executor/executor.c"
+}
+]

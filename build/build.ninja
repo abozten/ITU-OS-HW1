@@ -1,0 +1,190 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: itush
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build/
+# =============================================================================
+# Object build statements for EXECUTABLE target itush
+
+
+#############################################
+# Order-only phony target for itush
+
+build cmake_object_order_depends_target_itush: phony || CMakeFiles/itush.dir
+
+build CMakeFiles/itush.dir/source/linkedlist.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/linkedlist.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/linkedlist.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source
+
+build CMakeFiles/itush.dir/source/free.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/free.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/free.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source
+
+build CMakeFiles/itush.dir/source/check.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/check.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/check.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source
+
+build CMakeFiles/itush.dir/source/display.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/display.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/display.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source
+
+build CMakeFiles/itush.dir/source/lexer/lex.yy.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/lex.yy.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/lexer/lex.yy.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source/lexer
+
+build CMakeFiles/itush.dir/source/lexer/bison.tab.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/lexer/bison.tab.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/lexer/bison.tab.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source/lexer
+
+build CMakeFiles/itush.dir/source/parser/parser.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/parser/parser.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/parser/parser.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source/parser
+
+build CMakeFiles/itush.dir/source/executor/executor.c.o: C_COMPILER__itush_Debug /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/source/executor/executor.c || cmake_object_order_depends_target_itush
+  DEP_FILE = CMakeFiles/itush.dir/source/executor/executor.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -std=gnu99
+  INCLUDES = -I/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/include
+  OBJECT_DIR = CMakeFiles/itush.dir
+  OBJECT_FILE_DIR = CMakeFiles/itush.dir/source/executor
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target itush
+
+
+#############################################
+# Link the executable itush
+
+build itush: C_EXECUTABLE_LINKER__itush_Debug CMakeFiles/itush.dir/source/linkedlist.c.o CMakeFiles/itush.dir/source/free.c.o CMakeFiles/itush.dir/source/check.c.o CMakeFiles/itush.dir/source/display.c.o CMakeFiles/itush.dir/source/lexer/lex.yy.c.o CMakeFiles/itush.dir/source/lexer/bison.tab.c.o CMakeFiles/itush.dir/source/parser/parser.c.o CMakeFiles/itush.dir/source/executor/executor.c.o
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk
+  OBJECT_DIR = CMakeFiles/itush.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = itush
+  TARGET_PDB = itush.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build && /opt/local/bin/ccmake -S/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW -B/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build && /opt/local/bin/cmake --regenerate-during-build -S/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW -B/Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/abozten/Desktop/Dersler/Spring2025/BLG312E/HW/ITU-OS-HW/build
+
+build all: phony itush
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /opt/local/share/cmake-3.23/Modules/CMakeCInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /opt/local/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /opt/local/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /opt/local/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /opt/local/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /opt/local/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/local/share/cmake-3.23/Modules/Compiler/Clang.cmake /opt/local/share/cmake-3.23/Modules/Compiler/GNU.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /opt/local/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /opt/local/share/cmake-3.23/Modules/Platform/Darwin.cmake /opt/local/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.4/CMakeCCompiler.cmake CMakeFiles/3.23.4/CMakeCXXCompiler.cmake CMakeFiles/3.23.4/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt /opt/local/share/cmake-3.23/Modules/CMakeCInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /opt/local/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /opt/local/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /opt/local/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /opt/local/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /opt/local/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /opt/local/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/local/share/cmake-3.23/Modules/Compiler/Clang.cmake /opt/local/share/cmake-3.23/Modules/Compiler/GNU.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /opt/local/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /opt/local/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /opt/local/share/cmake-3.23/Modules/Platform/Darwin.cmake /opt/local/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.4/CMakeCCompiler.cmake CMakeFiles/3.23.4/CMakeCXXCompiler.cmake CMakeFiles/3.23.4/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all

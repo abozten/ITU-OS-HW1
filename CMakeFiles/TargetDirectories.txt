@@ -1,0 +1,3 @@
+/workspaces/HW/ITU-OS-HW/CMakeFiles/itush.dir
+/workspaces/HW/ITU-OS-HW/CMakeFiles/edit_cache.dir
+/workspaces/HW/ITU-OS-HW/CMakeFiles/rebuild_cache.dir
