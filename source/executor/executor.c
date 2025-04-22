@@ -1,7 +1,10 @@
 #include <shell.h>
-#include <sys/wait.h> // Required for waitpid [cite: 30]
-#include <errno.h>    // Required for perror
-
+#include <sys/wait.h> 
+#include <unistd.h> 
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <fcntl.h> 
 /**
  * @brief Executes a single command, handling input/output redirection.
  *
@@ -13,11 +16,11 @@
  */
 void execute_single_command(command *cmd, int pipe_in_fd, int pipe_out_fd, int is_first, int is_last)
 {
-	pid_t pid = fork(); // Create a child process [cite: 6, 22, 33]
+	pid_t pid = fork(); // Create a child process 
 
-	if (pid < 0) // Check if fork failed [cite: 32]
+	if (pid < 0) // Check if fork failed 
 	{
-		perror("fork failed"); // Report error [cite: 32]
+		perror("fork failed"); // Report error 
 		exit(EXIT_FAILURE); // Exit if fork fails
 	}
 	else if (pid == 0) // Child process
@@ -26,50 +29,50 @@ void execute_single_command(command *cmd, int pipe_in_fd, int pipe_out_fd, int i
 		if (!is_first) // If not the first command, read from the incoming pipe
 		{
 			// Redirect standard input to the read end of the previous pipe
-			if (dup2(pipe_in_fd, STDIN_FILENO) < 0) // [cite: 6, 32]
+			if (dup2(pipe_in_fd, STDIN_FILENO) < 0) 
 			{
-				perror("dup2 pipe_in failed"); // Report error [cite: 32]
+				perror("dup2 pipe_in failed"); 
 				exit(EXIT_FAILURE);
 			}
-			close(pipe_in_fd); // Close the original pipe file descriptor [cite: 31]
+			close(pipe_in_fd); // Close the original pipe file descriptor
 		}
 		else if (cmd->fd_in != STDIN_FILENO) // Handle explicit input redirection (<)
 		{
 			// Redirect standard input to the specified input file descriptor
-			if (dup2(cmd->fd_in, STDIN_FILENO) < 0) // [cite: 6, 32]
+			if (dup2(cmd->fd_in, STDIN_FILENO) < 0) 
 			{
-				perror("dup2 fd_in failed"); // Report error [cite: 32]
+				perror("dup2 fd_in failed"); // Report error 
 				exit(EXIT_FAILURE);
 			}
-			close(cmd->fd_in); // Close the original input file descriptor [cite: 25]
+			close(cmd->fd_in); // Close the original input file descriptor 
 		}
 
 		// --- Output Redirection ---
 		if (!is_last) // If not the last command, write to the outgoing pipe
 		{
 			// Redirect standard output to the write end of the next pipe
-			if (dup2(pipe_out_fd, STDOUT_FILENO) < 0) // [cite: 6, 32]
+			if (dup2(pipe_out_fd, STDOUT_FILENO) < 0) 
 			{
-				perror("dup2 pipe_out failed"); // Report error [cite: 32]
+				perror("dup2 pipe_out failed"); // Report error 
 				exit(EXIT_FAILURE);
 			}
-			close(pipe_out_fd); // Close the original pipe file descriptor [cite: 31]
+			close(pipe_out_fd); // Close the original pipe file descriptor 
 		}
 		else if (cmd->fd_out != STDOUT_FILENO) // Handle explicit output redirection (>, >>)
 		{
 			// Redirect standard output to the specified output file descriptor
-			if (dup2(cmd->fd_out, STDOUT_FILENO) < 0) // [cite: 6, 32]
+			if (dup2(cmd->fd_out, STDOUT_FILENO) < 0) 
 			{
-				perror("dup2 fd_out failed"); // Report error [cite: 32]
+				perror("dup2 fd_out failed"); // Report error 
 				exit(EXIT_FAILURE);
 			}
-			close(cmd->fd_out); // Close the original output file descriptor [cite: 25]
+			close(cmd->fd_out); // Close the original output file descriptor 
 		}
 
 		// Execute the command
-		execvp(cmd->args[0], cmd->args); // [cite: 33]
+		execvp(cmd->args[0], cmd->args); 
 		// If execvp returns, an error occurred
-		perror("execvp failed"); // Report error [cite: 32]
+		perror("execvp failed"); // Report error 
 		exit(EXIT_FAILURE); // Exit child process on execvp error
 	}
 	else // Parent process
@@ -77,11 +80,11 @@ void execute_single_command(command *cmd, int pipe_in_fd, int pipe_out_fd, int i
 		// Parent doesn't need the command's specific fds, they are duplicated in child or handled by pipes
 		if (cmd->fd_in != STDIN_FILENO)
 		{
-			close(cmd->fd_in); // Close input fd in parent if it was opened [cite: 25]
+			close(cmd->fd_in); // Close input fd in parent if it was opened 
 		}
 		if (cmd->fd_out != STDOUT_FILENO)
 		{
-			close(cmd->fd_out); // Close output fd in parent if it was opened [cite: 25]
+			close(cmd->fd_out); // Close output fd in parent if it was opened 
 		}
 		// Store the pid in the command structure (optional, but might be useful)
 		// cmd->pid = pid; // Example if you add pid to command struct
@@ -96,7 +99,7 @@ void execute_single_command(command *cmd, int pipe_in_fd, int pipe_out_fd, int i
 void executor(List *command_list)
 {
 	printf("____EXECUTOR____\n"); // Indicate executor start
-	// display(command_list, display_command); // Display parsed command (optional debug)
+	display(command_list, display_command); // Display parsed command (optional debug)
 
 	Node *current = command_list->head; // Start at the head of the command list
 	int num_commands = 0; // Counter for the number of commands
@@ -111,7 +114,7 @@ void executor(List *command_list)
 		return; // Exit the function
 	}
 
-	int pipe_fds[2]; // Array to hold file descriptors for a pipe [cite: 20, 31]
+	int pipe_fds[2]; // Array to hold file descriptors for a pipe 
 	int prev_pipe_read_end = -1; // Initialize previous pipe read end to -1 (no previous pipe)
 	pid_t pids[num_commands]; // Array to store child process IDs
 	int status; // Variable to store child exit status
@@ -124,28 +127,28 @@ void executor(List *command_list)
 		int is_last = (i == num_commands - 1); // Check if it's the last command
 		int current_pipe_write_end = -1; // Initialize current pipe write end
 
-		if (!is_last) // If it's not the last command, create a pipe for the next command [cite: 20]
+		if (!is_last) // If it's not the last command, create a pipe for the next command 
 		{
 			/* Pipe explanation: pipe() creates a unidirectional communication channel.
 			 * pipe_fds[0] becomes the read end, pipe_fds[1] becomes the write end.
 			 * Data written to pipe_fds[1] can be read from pipe_fds[0].
 			 * We use this to connect the standard output of one command
-			 * to the standard input of the next command in the pipeline. [cite: 21]
+			 * to the standard input of the next command in the pipeline. 
 			 */
-			if (pipe(pipe_fds) < 0) // Create the pipe [cite: 31]
+			if (pipe(pipe_fds) < 0) // Create the pipe 
 			{
-				perror("pipe failed"); // Report error [cite: 32]
+				perror("pipe failed"); // Report error 
 				exit(EXIT_FAILURE); // Exit if pipe creation fails
 			}
 			current_pipe_write_end = pipe_fds[1]; // Store the write end for the current command
 		}
 
 		// --- Fork and Execute ---
-		pid_t pid = fork(); // Create a child process for the current command [cite: 6, 22, 33]
+		pid_t pid = fork(); // Create a child process for the current command 
 
 		if (pid < 0) // Check if fork failed
 		{
-			perror("fork failed"); // Report error [cite: 32]
+			perror("fork failed"); // Report error 
 			// Consider more robust error handling (e.g., cleanup previous children)
 			exit(EXIT_FAILURE); // Exit if fork fails
 		}
@@ -154,46 +157,46 @@ void executor(List *command_list)
 			// --- Input Redirection (Child) ---
 			if (!is_first) // If not the first command, connect to the previous pipe's read end
 			{
-				if (dup2(prev_pipe_read_end, STDIN_FILENO) < 0) // Redirect stdin [cite: 6, 32]
+				if (dup2(prev_pipe_read_end, STDIN_FILENO) < 0) // Redirect stdin 
 				{
-					perror("child dup2 prev_pipe_read_end failed"); // Report error [cite: 32]
+					perror("child dup2 prev_pipe_read_end failed"); // Report error 
 					exit(EXIT_FAILURE);
 				}
-				close(prev_pipe_read_end); // Close the original descriptor [cite: 25, 31]
+				close(prev_pipe_read_end); // Close the original descriptor 
 			}
 			else if (cmd->fd_in != STDIN_FILENO) // Handle explicit input redirection (<) only for the first command
 			{
-				if (dup2(cmd->fd_in, STDIN_FILENO) < 0) // Redirect stdin [cite: 6, 32]
+				if (dup2(cmd->fd_in, STDIN_FILENO) < 0) // Redirect stdin 
 				{
-					perror("child dup2 fd_in failed"); // Report error [cite: 32]
+					perror("child dup2 fd_in failed"); // Report error 
 					exit(EXIT_FAILURE);
 				}
-				close(cmd->fd_in); // Close the original descriptor [cite: 25]
+				close(cmd->fd_in); // Close the original descriptor 
 			}
 
 			// --- Output Redirection (Child) ---
 			if (!is_last) // If not the last command, connect to the current pipe's write end
 			{
-				if (dup2(current_pipe_write_end, STDOUT_FILENO) < 0) // Redirect stdout [cite: 6, 32]
+				if (dup2(current_pipe_write_end, STDOUT_FILENO) < 0) // Redirect stdout 
 				{
-					perror("child dup2 current_pipe_write_end failed"); // Report error [cite: 32]
+					perror("child dup2 current_pipe_write_end failed"); // Report error 
 					exit(EXIT_FAILURE);
 				}
-				close(current_pipe_write_end); // Close the original descriptor [cite: 25, 31]
+				close(current_pipe_write_end); // Close the original descriptor 
                 // Also close the read end of the *current* pipe in the child, it's not needed here
-                close(pipe_fds[0]); // [cite: 25, 31]
+                close(pipe_fds[0]); 
 			}
 			else if (cmd->fd_out != STDOUT_FILENO) // Handle explicit output redirection (>, >>) only for the last command
 			{
-				if (dup2(cmd->fd_out, STDOUT_FILENO) < 0) // Redirect stdout [cite: 6, 32]
+				if (dup2(cmd->fd_out, STDOUT_FILENO) < 0) // Redirect stdout 
 				{
-					perror("child dup2 fd_out failed"); // Report error [cite: 32]
+					perror("child dup2 fd_out failed"); // Report error 
 					exit(EXIT_FAILURE);
 				}
-				close(cmd->fd_out); // Close the original descriptor [cite: 25]
+				close(cmd->fd_out); // Close the original descriptor 
 			}
 
-            /* Fork behavior for "cat | cat | ls": [cite: 24]
+            /* Fork behavior for "cat | cat | ls": 
              * 1. Parent forks 'cat' (1). Pipe A created.
              * 2. Parent forks 'cat' (2). Pipe B created. Parent closes Pipe A write end. Child 1 closes Pipe A read end.
              * 3. Parent forks 'ls'. Parent closes Pipe B write end. Child 2 closes Pipe B read end.
@@ -208,9 +211,9 @@ void executor(List *command_list)
             */
 
 			// --- Execute Command ---
-			execvp(cmd->args[0], cmd->args); // Execute the command [cite: 33]
+			execvp(cmd->args[0], cmd->args); // Execute the command 
 			// If execvp returns, it failed
-			perror(cmd->args[0]); // Report error specific to the command [cite: 32]
+			perror(cmd->args[0]); // Report error specific to the command 
 			exit(EXIT_FAILURE); // Exit child with failure status
 		}
 		else // Parent process
@@ -220,18 +223,18 @@ void executor(List *command_list)
 			// --- Close Parent's Pipe Ends ---
 			if (!is_first) // If not the first command
 			{
-				close(prev_pipe_read_end); // Close the read end of the previous pipe in the parent [cite: 25, 31]
+				close(prev_pipe_read_end); // Close the read end of the previous pipe in the parent 
 			}
 			if (!is_last) // If not the last command
 			{
-				close(current_pipe_write_end); // Close the write end of the current pipe in the parent [cite: 25, 31]
+				close(current_pipe_write_end); // Close the write end of the current pipe in the parent 
 				prev_pipe_read_end = pipe_fds[0]; // The read end of the current pipe becomes the previous read end for the next iteration
 			}
 
             // --- Close Command Specific FDs in Parent ---
             // These might have been opened by the parser for redirection (<, >)
             // We close them here after the child has potentially duplicated them.
-            /* File Descriptor Closing Explanation: [cite: 26]
+            /* File Descriptor Closing Explanation: 
              * File descriptors opened by the parser for redirection (cmd->fd_in, cmd->fd_out)
              * need to be closed in the parent process after the child process has been forked.
              * The child process duplicates these descriptors if needed (using dup2) and then closes
@@ -244,10 +247,10 @@ void executor(List *command_list)
              * Closing descriptors prevents resource leaks and ensures correct pipeline behavior (e.g., EOF propagation).
              */
             if (cmd->fd_in != STDIN_FILENO) {
-                 close(cmd->fd_in); // [cite: 25]
+                 close(cmd->fd_in); 
             }
             if (cmd->fd_out != STDOUT_FILENO) {
-                 close(cmd->fd_out); // [cite: 25]
+                 close(cmd->fd_out); 
             }
 
 			current = current->next; // Move to the next command in the list
@@ -259,15 +262,15 @@ void executor(List *command_list)
 	for (int i = 0; i < num_commands; i++) // Loop through the number of commands launched
 	{
 		command *cmd = (command *)current->content; // Get the command structure
-		if (waitpid(pids[i], &status, 0) < 0) // Wait for the specific child process [cite: 6, 18, 33]
+		if (waitpid(pids[i], &status, 0) < 0) // Wait for the specific child process 
 		{
-			perror("waitpid failed"); // Report error [cite: 32]
+			perror("waitpid failed"); // Report error 
 		}
 		else
 		{
 			if (WIFEXITED(status)) // Check if the child terminated normally
 			{
-				cmd->exit_status = WEXITSTATUS(status); // Store the exit status [cite: 18]
+				cmd->exit_status = WEXITSTATUS(status); // Store the exit status 
 			}
 			else if (WIFSIGNALED(status)) // Check if the child was terminated by a signal
             {
@@ -282,10 +285,9 @@ void executor(List *command_list)
 		current = current->next; // Move to the next node
 	}
 
-	// display(command_list, display_exit_status); // Display exit statuses (optional debug)
-	check_open_fds(); // Check for open file descriptors (debug) [cite: 25]
+	
+	display(command_list, display_exit_status); // Display exit statuses (optional debug)
+	//check_open_fds(); // Check for open file descriptors (debug) 
 
-    // Note: Memory leak checking should be done using Valgrind as specified [cite: 19]
-    // valgrind --leak-check=full ./itush
-    // The destroy function called after executor in handle_tokens should free allocated memory. [cite: 29]
+    // The destroy function called after executor in handle_tokens should free allocated memory. 
 }
